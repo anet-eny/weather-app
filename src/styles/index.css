@@ -1,1 +1,114 @@
+@import "@fontsource/dm-sans/300.css";
+@import "@fontsource/dm-sans/400.css";
+@import "@fontsource/dm-sans/500.css";
+@import "@fontsource/dm-sans/600.css";
+@import "@fontsource/dm-sans/700.css";
+@import "@fontsource/dm-sans/300-italic.css";
+@import "@fontsource/dm-sans/600-italic.css";
+@import "@fontsource/bricolage-grotesque/700.css";
+
 @import "tailwindcss";
+
+@theme {
+  /* Fonts */
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: "Bricolage Grotesque", sans-serif;
+
+  /* ── Neutral ── */
+  --color-neutral-900: oklch(11.6% 0.034 243); /* #02012C */
+  --color-neutral-800: oklch(22.8% 0.027 243); /* #262540 */
+  --color-neutral-700: oklch(29.6% 0.024 243); /* #302F4A */
+  --color-neutral-600: oklch(37.4% 0.022 243); /* #3C3B5E */
+  --color-neutral-300: oklch(70.8% 0.014 240); /* #ACACB7 */
+  --color-neutral-200: oklch(85.5% 0.008 250); /* #D4D3D9 */
+  --color-neutral-0: oklch(100% 0 0); /* #FFFFFF */
+
+  /* ── Orange ── */
+  --color-orange-500: oklch(72.4% 0.181 48); /* #FFB20A */
+
+  /* ── Blue ── */
+  --color-blue-500: oklch(52.6% 0.178 263); /* #4658D9 */
+  --color-blue-700: oklch(34.8% 0.178 268); /* #2B1B9C */
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-neutral-0);
+    color: var(--color-neutral-900);
+  }
+}
+
+/* 96px / SemiBold Italic — hero display */
+@utility text-preset-1 {
+  font-size: 6rem;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -0.125rem;
+  font-family: var(--font-sans);
+}
+
+/* 52px / Bold — section heading */
+@utility text-preset-2 {
+  font-size: 3.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  font-family: var(--font-display);
+}
+
+/* 32px / Light — large body / intro */
+@utility text-preset-3 {
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1;
+  font-family: var(--font-sans);
+}
+
+/* 28px / Bold — sub-heading */
+@utility text-preset-4 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  font-family: var(--font-sans);
+}
+
+/* 20px / SemiBold — label / emphasis */
+@utility text-preset-5 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+  font-family: var(--font-sans);
+}
+
+/* 20px / Medium — body large */
+@utility text-preset-5-medium {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.2;
+  font-family: var(--font-sans);
+}
+
+/* 18px / Medium — body */
+@utility text-preset-6 {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.2;
+  font-family: var(--font-sans);
+}
+
+/* 16px / Medium — body small */
+@utility text-preset-7 {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+  font-family: var(--font-sans);
+}
+
+/* 14px / Medium — caption / fine print */
+@utility text-preset-8 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.2;
+  font-family: var(--font-sans);
+}
