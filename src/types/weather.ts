@@ -1,11 +1,10 @@
-// Geocoding
+// ─── Geocoding ────────────────────────────────────────────────────────────────
 
 export interface GeoResult {
   id: number;
   name: string;
   country: string;
-  country_code: string;
-  admin1?: string; // region/state
+  admin1?: string;
   latitude: number;
   longitude: number;
 }
@@ -14,7 +13,7 @@ export interface GeocodingResponse {
   results?: GeoResult[];
 }
 
-// Open-Meteo API raw response
+// ─── Open-Meteo API raw response ──────────────────────────────────────────────
 
 export interface CurrentWeatherRaw {
   time: string;
@@ -23,16 +22,13 @@ export interface CurrentWeatherRaw {
   relative_humidity_2m: number;
   weathercode: number;
   windspeed_10m: number;
-  winddirection_10m: number;
-  surface_pressure: number;
-  visibility: number;
 }
 
 export interface HourlyWeatherRaw {
   time: string[];
   temperature_2m: number[];
   weathercode: number[];
-  precipitation_probability: number[];
+  precipitation: number[]; // mm za danou hodinu
 }
 
 export interface DailyWeatherRaw {
@@ -41,7 +37,6 @@ export interface DailyWeatherRaw {
   temperature_2m_max: number[];
   temperature_2m_min: number[];
   precipitation_sum: number[];
-  windspeed_10m_max: number[];
 }
 
 export interface WeatherApiResponse {
@@ -50,7 +45,7 @@ export interface WeatherApiResponse {
   daily: DailyWeatherRaw;
 }
 
-// Internal models (used in components)
+// ─── Internal models ───────────────────────────────────────────────────────────
 
 export interface CurrentWeather {
   temperature: number;
@@ -58,10 +53,8 @@ export interface CurrentWeather {
   humidity: number;
   weatherCode: number;
   description: string;
-  windSpeed: number;
-  windDirection: number;
-  pressure: number;
-  visibility: number;
+  windSpeed: number; // km/h (převod na mph v utils)
+  precipitation: number; // mm aktuální hodiny (převod na in v utils)
   time: Date;
 }
 
@@ -69,7 +62,6 @@ export interface HourlyForecastItem {
   time: Date;
   temperature: number;
   weatherCode: number;
-  precipitationProbability: number;
 }
 
 export interface DailyForecastItem {
@@ -78,18 +70,28 @@ export interface DailyForecastItem {
   description: string;
   tempMax: number;
   tempMin: number;
-  precipitationSum: number;
-  windSpeedMax: number;
 }
 
 export interface WeatherData {
   location: GeoResult;
   current: CurrentWeather;
-  hourly: HourlyForecastItem[]; // next 24h
-  daily: DailyForecastItem[]; // next 7 days
+  hourly: HourlyForecastItem[]; // příštích 24h
+  daily: DailyForecastItem[]; // 7 dní
 }
 
-// Hook state
+// ─── Units ────────────────────────────────────────────────────────────────────
+
+export type TemperatureUnit = "celsius" | "fahrenheit";
+export type WindUnit = "kmh" | "mph";
+export type PrecipitationUnit = "mm" | "in";
+
+export interface Units {
+  temperature: TemperatureUnit;
+  wind: WindUnit;
+  precipitation: PrecipitationUnit;
+}
+
+// ─── Hook state ────────────────────────────────────────────────────────────────
 
 export type WeatherStatus = "idle" | "loading" | "success" | "error";
 
